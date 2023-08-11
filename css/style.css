@@ -1634,7 +1634,7 @@ footer ul li {
 }
 
 footer ul li a {
-color: white;
+  color: white;
 }
 
 #copy {
@@ -1657,5 +1657,4 @@ footer .container-fluid {
 #imageg {
   width: 400px;
   height: 250px;
-
 }

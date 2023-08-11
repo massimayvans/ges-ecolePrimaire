@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : lun. 07 août 2023 à 13:12
+-- Généré le : jeu. 10 août 2023 à 11:19
 -- Version du serveur : 8.0.31
 -- Version de PHP : 8.0.26
 
@@ -35,6 +35,13 @@ CREATE TABLE IF NOT EXISTS `admin` (
   `PASSWORD` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`USERNAME`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `admin`
+--
+
+INSERT INTO `admin` (`USERNAME`, `EMAIL`, `TEL`, `PASSWORD`) VALUES
+('Massima', 'massimaonel@gmail.com', 77, '039052cbb7558be5d9c00cb71983e4a6c2b81803fedc51fd72');
 
 -- --------------------------------------------------------
 
@@ -94,16 +101,29 @@ CREATE TABLE IF NOT EXISTS `detailsbulletin` (
 DROP TABLE IF EXISTS `eleve`;
 CREATE TABLE IF NOT EXISTS `eleve` (
   `IDELEVE` int NOT NULL AUTO_INCREMENT,
-  `MATRICULE` varchar(30) COLLATE utf8mb4_general_ci NOT NULL,
+  `MATRICULE` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `NOM` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `PRENOM` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `SEXE` char(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `SEXE` char(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `DATE_DE_NAISSANCE` date DEFAULT NULL,
   `LIEU_DE_NAISSANCE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `ADRESSE` char(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `PHOTO` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `ADRESSE` char(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `NOM_TUTEUR` varchar(40) COLLATE utf8mb4_general_ci NOT NULL,
+  `PRENOM_TUTEUR` varchar(40) COLLATE utf8mb4_general_ci NOT NULL,
+  `TEL_TUTEUR` varchar(30) COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`IDELEVE`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `eleve`
+--
+
+INSERT INTO `eleve` (`IDELEVE`, `MATRICULE`, `NOM`, `PRENOM`, `SEXE`, `DATE_DE_NAISSANCE`, `LIEU_DE_NAISSANCE`, `PHOTO`, `ADRESSE`, `NOM_TUTEUR`, `PRENOM_TUTEUR`, `TEL_TUTEUR`) VALUES
+(2, 'EL001', 'Massima', 'Yvan Onel', 'HOMME', '2023-08-05', 'Libreville/Gabon ', 'images/ONEL.jpg', 'Liberté 6 Extension', 'Oumane', 'Moussa', '78 345 54 34'),
+(3, 'EL005', 'SONATEL', 'Yvan Onel', 'HOMME', '2023-08-12', 'Libreville/Gabon ', 'images/fwapam2poma71.png', 'Liberté 6 Extension', 'Oumane', 'Moussa', '66667676'),
+(4, 'EL002', 'MPKA', 'Alexandre', 'HOMME', '2023-08-06', 'DAKAR/SENEGAL', 'images/Joel.jpg', 'Keur Massar', 'Oumane', 'Moussa', '66667676'),
+(5, 'EL006', 'MOUSSAVOU', 'Alban', 'HOMME', '2023-08-13', 'Libreville/Gabon ', 'images/man-1.jpg', 'Grand Medine', 'TITE', 'Aline', '78 432 34 22');
 
 -- --------------------------------------------------------
 
@@ -228,6 +248,31 @@ CREATE TABLE IF NOT EXISTS `salle` (
   `CAPACITE` smallint DEFAULT NULL,
   PRIMARY KEY (`IDSALLE`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `utilisateurs`
+--
+
+DROP TABLE IF EXISTS `utilisateurs`;
+CREATE TABLE IF NOT EXISTS `utilisateurs` (
+  `ID` int NOT NULL AUTO_INCREMENT,
+  `email` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `nom` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `prenom` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `password` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `ip` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
+  `token` text COLLATE utf8mb4_general_ci NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `utilisateurs`
+--
+
+INSERT INTO `utilisateurs` (`ID`, `email`, `nom`, `prenom`, `password`, `ip`, `token`) VALUES
+(1, 'massimaonel@gmail.com', 'Massima', 'Yvan Onel', '$2y$12$pbU0twjbNjMihlUR/Saa7OczmbHjH/yTIQCKBYtoVTmrONcd2FVw.', '::1', '807a96486cd86829c0be92ae4d47eb4ebd71c9e3c2696a152bb9a3f1d84182decec7acb9a573413540c0e5312b3f499afff971db3bc05f3795fb7c8d6bb012df');
 
 --
 -- Contraintes pour les tables déchargées

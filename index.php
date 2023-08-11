@@ -1,4 +1,13 @@
 <?php
+session_start();
+if (isset($_SESSION['erreurLogin']))
+  $erreurLogin = $_SESSION['erreurLogin'];
+else {
+  $erreurLogin = "";
+}
+session_destroy();
+?>
+<?php
 require_once('connexion.php');
 ?>
 <!DOCTYPE html>
@@ -42,8 +51,7 @@ require_once('connexion.php');
                 <li class="cta"><a href="#contact-section" class="nav-link"><span>Contactez-nous</span></a></li>
               </ul>
             </nav>
-            <a href="#" class="d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-black float-right"><span
-                class="icon-menu h3"></span></a>
+            <a href="#" class="d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-black float-right"><span class="icon-menu h3"></span></a>
           </div>
         </div>
       </div>
@@ -63,24 +71,51 @@ require_once('connexion.php');
                   <h2> Apprendre. Eduquer. Grandir </h2>
                   Un espace de développement, d’éveil intellectuel, de savoir, d’exploration et de communication.
                   </p>
-                  <p data-aos="fade-up" data-aos-delay="300"><a href="#"
-                      class="btn btn-primary py-3 px-5 btn-pill">S'inscrire maintenant</a></p>
+                  <p data-aos="fade-up" data-aos-delay="300"><a href="Admin/html/inscriptionadmin.php" class="btn btn-primary py-3 px-5 btn-pill">S'inscrire maintenant</a></p>
                 </div>
 
-                <div class="col-lg-5 ml-auto" data-aos="fade-up" data-aos-delay="500">
-                  <form action="" method="post" class="form-box">
-                    <h3 class="h4 text-black mb-4">S'inscrire</h3>
-                    <div class="form-group">
-                      <input type="text" class="form-control" placeholder="Adresse Mail">
+                <div class="col-lg-5 ml-auto" data-aos="fade-up" data-aos-delay="500"><br>
+                  <form action="Admin/html/connexionadmin.php" method="post" class="form-box">
+                    <?php
+                    if (isset($_GET['login_err'])) {
+                      $err = htmlspecialchars($_GET['login_err']);
+
+                      switch ($err) {
+                        case 'password':
+                    ?>
+                          <div class="alert alert-danger">
+                            <strong>Erreur</strong> mot de passe incorrect
+                          </div>
+                        <?php
+                          break;
+
+                        case 'email':
+                        ?>
+                          <div class="alert alert-danger">
+                            <strong>Erreur</strong> email incorrect
+                          </div>
+                        <?php
+                          break;
+
+                        case 'already':
+                        ?>
+                          <div class="alert alert-danger">
+                            <strong>Erreur</strong> compte non existant
+                          </div>
+                    <?php
+                          break;
+                      }
+                    }
+                    ?>
+                    <h3 class="h4 text-black mb-4">Se connecter</h3>
+                    <div class="form-group"><br>
+                      <input type="email" name="email" class="form-control" placeholder="Adresse Mail">
                     </div>
                     <div class="form-group">
-                      <input type="password" class="form-control" placeholder="Mot De Passe">
-                    </div>
-                    <div class="form-group mb-4">
-                      <input type="password" class="form-control" placeholder="Comfirmer">
-                    </div>
+                      <input type="password" class="form-control" placeholder="Mot De Passe" name="password">
+                    </div><br>
                     <div class="form-group">
-                      <input type="submit" class="btn btn-primary btn-pill" value="S'inscrire">
+                      <input type="submit" class="btn btn-primary btn-pill" value="Connexion" name="btnlogin" class="box-button">
                     </div>
                   </form>
 
@@ -92,8 +127,6 @@ require_once('connexion.php');
         </div>
       </div>
     </div>
-
-
     <div class="site-section courses-title" id="courses-section">
       <div class="container">
         <div class="row mb-5 justify-content-center">
@@ -111,43 +144,43 @@ require_once('connexion.php');
 
             <div class="course bg-white h-100 align-self-stretch">
               <figure class="m-0">
-                <img src="images/imag16.jpeg" alt="Image" class="img-fluid"id="imageg"></a>
+                <img src="images/imag16.jpeg" alt="Image" class="img-fluid" id="imageg"></a>
               </figure>
             </div>
 
             <div class="course bg-white h-100 align-self-stretch">
               <figure class="m-0">
-                <img src="images/img7.jpeg" alt="Image" class="img-fluid"id="imageg"></a>
-              </figure>
-
-            </div>
-
-            <div class="course bg-white h-100 align-self-stretch">
-              <figure class="m-0">
-                <img src="images/imag12.jpeg" alt="Image" class="img-fluid"id="imageg"></a>
-              </figure>
-
-            </div>
-
-
-
-            <div class="course bg-white h-100 align-self-stretch">
-              <figure class="m-0">
-                <img src="images/imag14.jpeg" alt="Image" class="img-fluid"id="imageg"></a>
+                <img src="images/img7.jpeg" alt="Image" class="img-fluid" id="imageg"></a>
               </figure>
 
             </div>
 
             <div class="course bg-white h-100 align-self-stretch">
               <figure class="m-0">
-                <img src="images/imag11.jpeg" alt="Image" class="img-fluid"id="imageg"></a>
+                <img src="images/imag12.jpeg" alt="Image" class="img-fluid" id="imageg"></a>
+              </figure>
+
+            </div>
+
+
+
+            <div class="course bg-white h-100 align-self-stretch">
+              <figure class="m-0">
+                <img src="images/imag14.jpeg" alt="Image" class="img-fluid" id="imageg"></a>
               </figure>
 
             </div>
 
             <div class="course bg-white h-100 align-self-stretch">
               <figure class="m-0">
-                <img src="images/imag15.jpeg" alt="Image" class="img-fluid"id="imageg"></a>
+                <img src="images/imag11.jpeg" alt="Image" class="img-fluid" id="imageg"></a>
+              </figure>
+
+            </div>
+
+            <div class="course bg-white h-100 align-self-stretch">
+              <figure class="m-0">
+                <img src="images/imag15.jpeg" alt="Image" class="img-fluid" id="imageg"></a>
               </figure>
 
             </div>
@@ -161,43 +194,43 @@ require_once('connexion.php');
 
             <div class="course bg-white h-100 align-self-stretch">
               <figure class="m-0">
-                <img src="images/imag10.jpeg" alt="Image" class="img-fluid"id="imageg"></a>
+                <img src="images/imag10.jpeg" alt="Image" class="img-fluid" id="imageg"></a>
               </figure>
             </div>
 
             <div class="course bg-white h-100 align-self-stretch">
               <figure class="m-0">
-                <img src="images/image20.jpeg" alt="Image" class="img-fluid"id="imageg"></a>
-              </figure>
-
-            </div>
-
-            <div class="course bg-white h-100 align-self-stretch">
-              <figure class="m-0">
-                <img src="images/img19.jpeg" alt="Image" class="img-fluid"id="imageg"></a>
-              </figure>
-
-            </div>
-
-
-
-            <div class="course bg-white h-100 align-self-stretch">
-              <figure class="m-0">
-                <img src="images/imagfille.jpeg" alt="Image" class="img-fluid"id="imageg"></a>
+                <img src="images/image20.jpeg" alt="Image" class="img-fluid" id="imageg"></a>
               </figure>
 
             </div>
 
             <div class="course bg-white h-100 align-self-stretch">
               <figure class="m-0">
-                <img src="images/imag12.jpeg" alt="Image" class="img-fluid"id="imageg"></a>
+                <img src="images/img19.jpeg" alt="Image" class="img-fluid" id="imageg"></a>
+              </figure>
+
+            </div>
+
+
+
+            <div class="course bg-white h-100 align-self-stretch">
+              <figure class="m-0">
+                <img src="images/imagfille.jpeg" alt="Image" class="img-fluid" id="imageg"></a>
               </figure>
 
             </div>
 
             <div class="course bg-white h-100 align-self-stretch">
               <figure class="m-0">
-                <img src="images/imag11.jpeg" alt="Image" class="img-fluid"id="imageg"></a>
+                <img src="images/imag12.jpeg" alt="Image" class="img-fluid" id="imageg"></a>
+              </figure>
+
+            </div>
+
+            <div class="course bg-white h-100 align-self-stretch">
+              <figure class="m-0">
+                <img src="images/imag11.jpeg" alt="Image" class="img-fluid" id="imageg"></a>
               </figure>
 
             </div>
@@ -347,8 +380,7 @@ require_once('connexion.php');
               </div>
               <div class="form-group row">
                 <div class="col-md-12">
-                  <textarea class="form-control" id="" cols="30" rows="10"
-                    placeholder="Ecrire votre message ici."></textarea>
+                  <textarea class="form-control" id="" cols="30" rows="10" placeholder="Ecrire votre message ici."></textarea>
                 </div>
               </div>
 
@@ -365,14 +397,14 @@ require_once('connexion.php');
       </div>
     </diV>
 
-  
-<?php include('footer.php') ?>
+
+    <?php include('footer.php') ?>
 
 
 
   </div> <!-- .site-wrap -->
   <?php include('script.php') ?>
- 
+
 
 </body>
 

@@ -1,3 +1,6 @@
+<?php require_once('session.php');
+require_once('config.php');
+?>
 <!doctype html>
 <html lang="en">
 
@@ -11,7 +14,7 @@
       <!-- Sidebar scroll-->
       <div>
         <div class="brand-logo d-flex align-items-center justify-content-between">
-          <a href="./index.html" class="text-nowrap logo-img">
+          <a href="MenuAdmin.php" class="text-nowrap logo-img">
             <img src="../assets/images/logos/dark-logo.svg" width="180" alt="" />
           </a>
           <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
@@ -45,7 +48,8 @@
           </ul>
           <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
             <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
-              <a href="https://adminmart.com/product/modernize-free-bootstrap-admin-dashboard/" target="_blank" class="btn btn-primary">Download Free</a>
+              <a href="#" class="btn btn-primary">
+                Bienvenue : <?php echo $data['nom']; ?> !</a>
               <li class="nav-item dropdown">
                 <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown" aria-expanded="false">
                   <img src="../assets/images/profile/user-1.jpg" alt="" width="35" height="35" class="rounded-circle">
@@ -54,17 +58,17 @@
                   <div class="message-body">
                     <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
                       <i class="ti ti-user fs-6"></i>
-                      <p class="mb-0 fs-3">My Profile</p>
+                      <p class="mb-0 fs-3"><?php echo $data['prenom']; ?></p>
                     </a>
                     <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
                       <i class="ti ti-mail fs-6"></i>
-                      <p class="mb-0 fs-3">My Account</p>
+                      <p class="mb-0 fs-3"><?php echo $data['email']; ?></p>
                     </a>
                     <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
                       <i class="ti ti-list-check fs-6"></i>
-                      <p class="mb-0 fs-3">My Task</p>
+                      <p class="mb-0 fs-3"><?php echo $data['ID']; ?></p>
                     </a>
-                    <a href="./authentication-login.html" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
+                    <a href="../../deconnexion.php" class="btn btn-outline-danger mx-3 mt-2 d-block">Déconnexion</a>
                   </div>
                 </div>
               </li>
@@ -74,6 +78,72 @@
       </header>
       <!--  Header End -->
       <div class="container-fluid">
+        <div class="card-group">
+          <div class="card border-right">
+            <div class="card-body">
+              <div class="d-flex d-lg-flex d-md-block align-items-center">
+                <div>
+                  <div class="d-inline-flex align-items-center">
+                    <a href="ListeEtudiant.php"><i class="bi bi-person-fill" id="iconeA"></i></a>
+                    <span class="badge bg-primary font-12 text-white font-weight-medium badge-pill ml-2 d-lg-block d-md-none" id="spanText"> Enregistrés</span>
+                  </div>
+                  <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">TOTAL DES ETUDIANTS</h6>
+                </div>
+                <div class="ml-auto mt-md-3 mt-lg-0">
+                  <span class="opacity-7 text-muted"><i data-feather="user-plus"></i></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card border-right">
+            <div class="card-body">
+              <div class="d-flex d-lg-flex d-md-block align-items-center">
+                <div>
+                  <div class="d-inline-flex align-items-center">
+                    <a href="Listeformation.php"><i class="bi bi-book" id="iconeA"></i></a>
+                    <span class="badge bg-primary font-12 text-white font-weight-medium badge-pill ml-2 d-lg-block d-md-none"> Enregistrés</span>
+                  </div>
+                  <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">TOTAL DES FORMATIONS</h6>
+                </div>
+                <div class="ml-auto mt-md-3 mt-lg-0">
+                  <span class="opacity-7 text-muted"><i data-feather="user-plus"></i></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card border-right">
+            <div class="card-body">
+              <div class="d-flex d-lg-flex d-md-block align-items-center">
+                <div>
+                  <div class="d-inline-flex align-items-center">
+                    <a href="ListeAntene.php"><i class="bi bi-broadcast-pin" id="iconeA"></i></a>
+                    <span class="badge bg-primary font-12 text-white font-weight-medium badge-pill ml-2 d-lg-block d-md-none"> Enregistrés</span>
+                  </div>
+                  <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">TOTAL DES ANTENNES</h6>
+                </div>
+                <div class="ml-auto mt-md-3 mt-lg-0">
+                  <span class="opacity-7 text-muted"><i data-feather="user-plus"></i></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card border-right">
+            <div class="card-body">
+              <div class="d-flex d-lg-flex d-md-block align-items-center">
+                <div>
+                  <div class="d-inline-flex align-items-center">
+                    <a href="listeformateur.php"><i class="bi bi-person-workspace" id="iconeA"></i></a>
+                    <span class="badge bg-primary font-12 text-white font-weight-medium badge-pill ml-2 d-lg-block d-md-none"> Enregistrés</span>
+                  </div>
+                  <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">TOTAL FORMATEURS</h6>
+                </div>
+                <div class="ml-auto mt-md-3 mt-lg-0">
+                  <span class="opacity-7 text-muted"><i data-feather="user-plus"></i></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div><br><br>
         <!--  Row 1 -->
         <div class="row">
           <div class="col-lg-8 d-flex align-items-strech">
